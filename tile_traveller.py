@@ -77,7 +77,7 @@ def play_one_move(col, row, valid_directions):
 
 def pull_dat_lever(coins):
     answer = input("Pull a lever (y/n): ")
-    if "y" in answer:
+    if "y" or "Y" in answer:
         coins.append(1)
         print("You received 1 coin, your total is now " + str(len(coins)) + ".")
         return coins
@@ -96,7 +96,7 @@ print_directions(valid_directions)
 while not victory:
     victory, col, row = play_one_move(col, row, valid_directions)
     if victory:
-        print("Victory!" + " Total coins " + str(coins) + ".")
+        print("Victory!" + " Total coins " + str(len(coins)) + ".")
     else:
         valid_directions = find_directions(col, row, coins)
         print_directions(valid_directions)
