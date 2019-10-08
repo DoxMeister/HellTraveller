@@ -77,26 +77,37 @@ def play_one_move(col, row, valid_directions):
 
 def pull_dat_lever(coins):
     answer = input("Pull a lever (y/n): ")
-    if "y" or "Y" in answer:
+    if "y" in answer or "Y" in answer:
         coins.append(1)
         print("You received 1 coin, your total is now " + str(len(coins)) + ".")
         return coins
 
+def play_again():
+    answer = input("Play again (y/n): ")
+    if "y" in answer or "Y" in answer:
+        return True
+    return False
+
 # The main program starts here
-coins = []
-coin_amount = len(coins)
+play = True
 
-victory = False
-row = 1
-col = 1
+while play:
 
-valid_directions = NORTH
-print_directions(valid_directions)
+    coins = []
+    coin_amount = len(coins)
 
-while not victory:
-    victory, col, row = play_one_move(col, row, valid_directions)
-    if victory:
-        print("Victory!" + " Total coins " + str(len(coins)) + ".")
-    else:
-        valid_directions = find_directions(col, row, coins)
-        print_directions(valid_directions)
+    victory = False
+    row = 1
+    col = 1
+
+    valid_directions = NORTH
+    print_directions(valid_directions)
+
+    while not victory:
+        victory, col, row = play_one_move(col, row, valid_directions)
+        if victory:
+            print("Victory!" + " Total coins " + str(len(coins)) + ".")
+        else:
+            valid_directions = find_directions(col, row, coins)
+            print_directions(valid_directions)
+    play = play_again()
